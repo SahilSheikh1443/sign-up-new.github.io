@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Form Validation</title>
+
+    <!-- Fonts & icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="actrnymous" />
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="d-flex">
+                <div class="left">
+                    <img src="images/signin-image.jpg" alt="">
+                </div>
+                <div class="right">
+                    <div class="right-inner">
+                        <!--Heading -->
+                        <h2>Sign Up</h2>
+                        <form id="signup" class="form" action="#action_page.php" name="form" method="POST">
+                
+                            <!--Username -->
+                            <div class="form-field">
+                                <label for="username">Username <span>*</span></label>
+                                <input type="text" name="username" id="username" maxlength="20" autocomplete="off">
+                                <i class="envelope fas fa-user"></i>
+                                <small></small>
+                            </div>
+                
+                            <!--Email -->
+                            <div class="form-field">
+                                <label for="email">Email <span>*</span></label>
+                                <input type="text" name="email" id="email" maxlength="20" autocomplete="off">
+                                <i class="envelope fas fa-envelope"></i>
+                                <small></small>
+                            </div>
+                
+                            <!-- Mobile no -->
+                            <div class="form-field">
+                                <label for="number">Number <span>*</span></label>
+                                <input type="tel" id="number" name="number"
+                                    value="+91" maxlength="13" autocomplete="off" onkeypress="return onlyNumberKey(event)" />
+                                <i class="envelope fas fa-phone"></i>
+                                <small></small>
+                            </div>
+                
+                            <!--Password -->
+                            <div class="form-field">
+                                <label for="password">Password <span>*</span></label>
+                                <input type="password" name="password" id="password" maxlength="20" autocomplete="off">
+                                <i class="unlock fas fa-eye-slash" id="togglePassword"></i>
+                                <small></small>
+                            </div>
+                
+                            <!--Confirm Password -->
+                            <div class="form-field">
+                                <label for="confirm-password">Confirm Password <span>*</span></label>
+                                <input type="password" name="confirm-password" id="confirm-password" maxlength="20" autocomplete="off">
+                                <i class="unlock fas fa-eye-slash" id="togglePassword2"></i>
+                                <small></small>
+                            </div>
+                
+                            <!--File Upload -->
+                            <div class="form-field">
+                                <div class="choose-file">
+                                    <label for="imgInp" class="upload-img">
+                                        <img id="blah" src="images/upload-img.png" alt="" />
+                                    </label>
+                                    <label for="imgInp" class="upload-btn">upload here</label>
+                                    <input accept="image/*" type='file' id="imgInp" class="fileUpload" />
+                                </div>
+                            </div>
+                
+                            <!--Confirm Button -->
+                            <div class="form-field">
+                                <button type="submit" value="Sign Up">Sign Up</button>                                                                      
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="js/app.js"></script>
+</body>
+
+<script>
+    function onlyNumberKey(evt) {
+          
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+<!--Show and Hide password -->
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye / eye slash icon
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('fa-eye');
+    });
+</script>
+
+<!--Show and Hide Confirm password -->
+<script>
+    const togglePassword2 = document.querySelector('#togglePassword2');
+    const password2 = document.querySelector('#confirm-password');
+
+    togglePassword2.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+        password2.setAttribute('type', type);
+        // toggle the eye / eye slash icon
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('fa-eye');
+    });
+</script>
+
+<!--File Upload and Preview-->
+<script>
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+
+</html>
